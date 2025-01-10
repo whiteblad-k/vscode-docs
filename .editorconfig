@@ -66,3 +66,22 @@ for letra in nombre:
 # Esperar a que el sonido termine
 while pygame.mixer.music.get_busy():
     pygame.time.Clock().tick(10)
+
+from music21 import *
+
+nombre = "Vladyslav Yesimantovskyy"
+notas = {'V': 'C', 'L': 'D', 'A': 'E', 'D': 'F', # ... asignación de notas }
+# ... (resto de las asignaciones)
+
+# Crear una corriente musical
+stream = stream.Stream()
+
+# Iterar sobre cada letra y crear un acorde
+for palabra in nombre.split():
+    acorde_notas = [notas[letra] for letra in palabra]
+    acorde = chord.Chord(acorde_notas)
+    stream.append(acorde)
+
+# Reproducir la música
+stream.show()  # Muestra la partitura en pantalla
+stream.play()  # Reproduce la música
