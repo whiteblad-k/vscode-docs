@@ -25,3 +25,44 @@ for letra in nombre:
         print(f"La letra '{letra}' representa: {frase}")
     else:
         print(f"No tengo una frase asociada a la letra '{letra}'.")
+from PIL import Image
+import pygame
+
+# ... (resto del código anterior)
+
+# Diccionario para asociar letras con imágenes y sonidos
+imagenes = {
+    'V': 'valor.png',
+    'L': 'luz.jpg',
+    # ...
+}
+sonidos = {
+    'V': 'valor.wav',
+    'L': 'luz.mp3',
+    # ...
+}
+
+# Crear una nueva imagen
+nueva_imagen = Image.new('RGB', (ancho, alto), (255, 255, 255))
+
+# Iterar sobre cada letra y agregar la imagen correspondiente
+x = 0
+for letra in nombre:
+    imagen_letra = Image.open(imagenes[letra.upper()])
+    nueva_imagen.paste(imagen_letra, (x, 0))
+    x += imagen_letra.width
+
+# Guardar la imagen
+nueva_imagen.save("nombre_visual.png")
+
+# Inicializar pygame
+pygame.init()
+
+# Reproducir los sonidos
+for letra in nombre:
+    pygame.mixer.music.load(sonidos[letra.upper()])
+    pygame.mixer.music.play()
+
+# Esperar a que el sonido termine
+while pygame.mixer.music.get_busy():
+    pygame.time.Clock().tick(10)
