@@ -3,3 +3,25 @@ root = true
 [*]
 end_of_line = lf
 trim_trailing_whitespace = true
+import random
+
+nombre = "Vladyslav Yesimantovskyy"
+palabras_clave = {
+    'V': ['Valor', 'Vitalidad', 'Victoria'],
+    'L': ['Luz', 'Libertad', 'Lealtad'],
+    # ... resto de las palabras clave
+}
+frases = {
+    'Valor': 'El valor es la brújula que guía nuestros actos.',
+    'Luz': 'La luz de la esperanza siempre brilla en la oscuridad.',
+    # ... resto de las frases
+}
+
+for letra in nombre:
+    if letra.upper() in palabras_clave:
+        palabras_clave_letra = palabras_clave[letra.upper()]
+        palabra_clave = random.choice(palabras_clave_letra)
+        frase = frases[palabra_clave]
+        print(f"La letra '{letra}' representa: {frase}")
+    else:
+        print(f"No tengo una frase asociada a la letra '{letra}'.")
